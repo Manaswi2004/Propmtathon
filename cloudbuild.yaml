@@ -1,0 +1,9 @@
+steps:
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: ['-m', 'rsync', '-r', '.', 'gs://manaswi-ai-app-2026']
+
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: ['iam', 'ch', 'allUsers:objectViewer', 'gs://manaswi-ai-app-2026']
+
+options:
+  logging: CLOUD_LOGGING_ONLY
