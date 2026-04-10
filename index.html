@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HealthMate Vision OS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-particle p1"></div>
+    <div class="bg-particle p2"></div>
+
+    <div id="app-container">
+        <!-- view-login -->
+        <section id="view-login" class="view active">
+            <div class="glass-panel animate-in" style="margin-top: 40px;">
+                <div class="login-header">
+                    <p class="login-tagline">HealthMate OS</p>
+                    <h1>Core Identity</h1>
+                </div>
+                <form id="loginForm" class="login-form">
+                    <input type="text" id="usernameInput" placeholder="Enter System Alias" required>
+                    <button type="submit" class="main-btn interactive-hover" style="margin-top:10px;">Link Matrix</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- view-dashboard -->
+        <section id="view-dashboard" class="view">
+            <header class="dash-header animate-in">
+                <div class="greeting">
+                    <p id="dateLabel">System Active</p>
+                    <h1 id="greetingLabel">Welcome, User</h1>
+                </div>
+                <button id="logoutAppBtn" class="logout-btn interactive-hover">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                </button>
+            </header>
+
+            <div class="streak-badge animate-in">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                <span id="streakCount">0 Cycles</span>
+            </div>
+
+            <!-- Habits -->
+            <div class="glass-panel animate-in d-1">
+                <h2 class="section-title">Hydration Core</h2>
+                <div class="habit-card">
+                    <div class="habit-info">
+                        <div class="habit-icon">💧</div>
+                        <div>
+                            <h4>Water Reservoir</h4>
+                            <p id="waterLabel">0 / 8 Units</p>
+                        </div>
+                    </div>
+                    <button class="btn-icon interactive-hover" id="addWaterBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M12 4v16M4 12h16"/></svg>
+                    </button>
+                </div>
+                <div class="progress-bg"><div class="progress-fill" id="waterProgress"></div></div>
+            </div>
+
+            <!-- Macros -->
+            <div class="glass-panel animate-in d-2">
+                <h2 class="section-title">System Nutrition</h2>
+                <div class="macro-grid">
+                    <div class="macro-box glass-panel" style="padding: 10px 4px; box-shadow:none;">
+                        <span class="macro-val" id="totCal">0</span>
+                        <span class="macro-lbl">Calories</span>
+                    </div>
+                    <div class="macro-box glass-panel" style="padding: 10px 4px; box-shadow:none;">
+                        <span class="macro-val" id="totP">0g</span>
+                        <span class="macro-lbl">Protein</span>
+                    </div>
+                    <div class="macro-box glass-panel" style="padding: 10px 4px; box-shadow:none;">
+                        <span class="macro-val" id="totC">0g</span>
+                        <span class="macro-lbl">Carbs</span>
+                    </div>
+                    <div class="macro-box glass-panel" style="padding: 10px 4px; box-shadow:none;">
+                        <span class="macro-val" id="totF">0g</span>
+                        <span class="macro-lbl">Fats</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logs -->
+            <div class="animate-in d-3">
+                <h2 class="section-title">Ingestion Log</h2>
+                <div id="foodLogList" class="log-list">
+                    <div class="log-empty">Matrix empty. Utilize Assistant.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- view-ai -->
+        <section id="view-ai" class="view">
+            <header class="dash-header animate-in">
+                <div class="greeting">
+                    <p>Core Intelligence 4.0</p>
+                    <h1>What to eat?</h1>
+                </div>
+            </header>
+
+            <div class="glass-panel animate-in d-1" id="inputView">
+                <span class="sub-label">Current State Parameters</span>
+                <div class="mood-grid">
+                    <button class="glass-btn mode-btn active" data-tag="tired"><span class="emoji">🥱</span><span class="label">Tired</span></button>
+                    <button class="glass-btn mode-btn" data-tag="energy"><span class="emoji">⚡</span><span class="label">Workout</span></button>
+                    <button class="glass-btn mode-btn" data-tag="sick"><span class="emoji">🤒</span><span class="label">Recovery</span></button>
+                    <button class="glass-btn mode-btn" data-tag="craving"><span class="emoji">🍔</span><span class="label">Craving</span></button>
+                    <button class="glass-btn mode-btn" data-tag="light"><span class="emoji">🥗</span><span class="label">Light</span></button>
+                    <button class="glass-btn mode-btn" data-tag="night"><span class="emoji">🌙</span><span class="label">Late Night</span></button>
+                </div>
+
+                <span class="sub-label" style="margin-top:24px;">Hunger Imbalance Matrix</span>
+                <div class="slider-container">
+                    <input type="range" id="hungerSlider" min="1" max="3" value="2">
+                    <div class="slider-labels"><span>Snack</span><span>Meal</span><span>Starving</span></div>
+                </div>
+                
+                <button id="decideBtn" class="main-btn" style="margin-top: 16px;">👉 COMPUTE OPTIMAL</button>
+            </div>
+
+            <div class="glass-panel ai-loader" id="loaderUI">
+                <div class="orb"></div>
+                <p>SYNTHESIZING DIRECTIVES...</p>
+            </div>
+
+            <div id="resultContainer">
+                <div class="glass-panel result-card animate-in">
+                    <div class="result-header">Optimal Directive</div>
+                    <div class="result-title" id="resTitle">Loading</div>
+                    <div class="result-desc" id="resDesc">Loading</div>
+                    <div class="action-row">
+                        <div class="macro-badge" id="resMacros">Loading</div>
+                        <button class="log-btn interactive-hover" id="logBtnAction">Ingest</button>
+                    </div>
+                </div>
+                <button id="resetBtn" class="glass-btn animate-in d-1" style="width: 100%; border-radius: 16px; padding: 16px;">
+                    <span class="label">↺ Recalculate Parameters</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- view-delivery -->
+        <section id="view-delivery" class="view">
+            <header class="dash-header animate-in">
+                <div class="greeting">
+                    <p>HealthMate SOS</p>
+                    <h1 style="color: #ef4444;">Rapid Dispatch</h1>
+                </div>
+            </header>
+
+            <div class="glass-panel animate-in d-1" style="background: rgba(239, 68, 68, 0.05); border-color: rgba(239, 68, 68, 0.3); text-align: center;">
+                <h2 style="color: #ef4444; margin-bottom: 8px;">Emergency Required?</h2>
+                <p style="color: var(--text-dim); font-size: 0.95rem; margin-bottom: 24px; line-height: 1.4;">Bypass core logic. Dispatch the absolute fastest prep item to your location instantly.</p>
+                <button id="sosDeliveryBtn" class="main-btn interactive-hover" style="background: rgba(239, 68, 68, 0.2); border-color: #ef4444; color: #fff; box-shadow: 0 0 25px rgba(239,68,68,0.3);">
+                    INITIATE DRONE 🚀
+                </button>
+            </div>
+
+            <div id="deliveryRadarUI">
+                <div class="radar-circle animate-in">
+                    <div class="radar-sweep"></div>
+                    <div class="radar-dot" id="radarUserDot"></div>
+                    <div class="radar-dot drone-dot" id="radarDroneDot"></div>
+                </div>
+                
+                <div class="glass-panel animate-in d-1" style="width: 100%; text-align: center;">
+                    <h3 id="delivStatus" style="color: #ef4444; margin-bottom: 4px;">Drone Dispatched...</h3>
+                    <p id="delivItem" style="font-size: 1.05rem; font-weight: 600; margin-bottom: 12px; color:#fff;"></p>
+                    <p id="delivTimer" style="font-size: 2.2rem; font-family: monospace; color: var(--text-main); font-weight: 700; letter-spacing:2px;">00:00</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Nav -->
+        <nav class="bottom-nav" id="mainNav" style="display: none;">
+            <button class="nav-btn interactive-hover active" data-target="view-dashboard">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                <span>Matrix</span>
+            </button>
+            <button class="nav-btn interactive-hover" data-target="view-ai">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                <span>AI Core</span>
+            </button>
+            <button class="nav-btn interactive-hover" data-target="view-delivery" style="color: #ef4444;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 21L19 12 5 3v18z" stroke-linejoin="round" stroke-linecap="round"/></svg>
+                <span style="color:#ef4444;">SOS</span>
+            </button>
+        </nav>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
